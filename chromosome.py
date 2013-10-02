@@ -60,7 +60,7 @@ class Chromosome:
             self.chromosome[indexTwo] = temp
                       
     def __str__(self):
-        return str(self.chromosome) + " Cost: " + str(self.cost)
+        return "{} Cost: {}".format(self.chromosome, self.cost)
     
     def __repr__(self):
         return str(self.chromosome)

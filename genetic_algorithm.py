@@ -1,6 +1,4 @@
 import population
-import chromosome
-import random
 
 class GeneticAlgorithm:
     def __init__(self, mutation_prob=.001, max_iterations = 1000000):

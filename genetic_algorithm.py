@@ -7,22 +7,13 @@ class GeneticAlgorithm:
         self.mutation_prob = mutation_prob
         self.max_iterations = max_iterations
         
-    def iteration(self, population):
-        touny = random.sample(population,3)
-        touny.sort()
-        
-        new_c = chromosome.Chromosome.fromParents(touny[0],touny[1])
-        new_c.mutate(self.mutation_prob)
-        
-        population.replaceChromosome(new_c, touny[2])
-        return population  
-        
     def find_solution(self, population):
-        print "Starting Algorithm - Mutation Probability: " + str(self.mutation_prob) + " Max Iterations: " + str(self.max_iterations)
+        print "Starting Algorithm - Mutation Probability: {} Max Iterations: {}".format(self.mutation_prob, self.max_iterations)
+        
         for i in range(self.max_iterations):
-            population = self.iteration(population)
+            population = population.breed(self.mutation_prob)
             if(population[0].cost == 0):
-                print "Found in " + str(i) + " iterations"
+                print "Found in {} iterations".format(i)
                 return population[0]
         print "No solution found"
         return population[0]

@@ -63,7 +63,7 @@ class Chromosome:
         return str(self.chromosome) + " Cost: " + str(self.cost)
     
     def __repr__(self):
-        return str(self.chromosome) + " Cost: " + str(self.cost)
+        return str(self.chromosome)
     
     def __cmp__(self, other):
         return self.cost.__cmp__(other.cost)

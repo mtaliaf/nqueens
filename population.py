@@ -1,4 +1,5 @@
 import chromosome
+import random
 
 class Population:
 
@@ -6,7 +7,7 @@ class Population:
         self.num_queens = num_queens
         self.population_size = population_size
         self.population = self.generatePopulation()
-        print "Population - Num Queens: " + str(self.num_queens) + " Population Size: " + str(self.population_size)
+        print "Population - Num Queens: {} Population Size: {}".format(self.num_queens, self.population_size)
 
     def generatePopulation(self):
         population = []
@@ -14,6 +15,16 @@ class Population:
             population.append(chromosome.Chromosome.random(self.num_queens))
         population.sort()
         return population
+    
+    def breed(self, mutation_prob = .001):
+        touny = random.sample(self,3)
+        touny.sort()
+        
+        new_c = chromosome.Chromosome.fromParents(touny[0],touny[1])
+        new_c.mutate(mutation_prob)
+        
+        self.replaceChromosome(new_c, touny[2])
+        return self  
     
     def replaceChromosome(self, new_c, old_c):
         self.population.append(new_c)
